@@ -166,4 +166,105 @@ window.showDetail=id=>{
  const x=reports.find(r=>r.id===id);if(!x)return;
  $("detailTitle").textContent=x.name;
  const own=isOwnReport(x),returned=x.status==="Returned";
- $("detailBody").innerHTML=`<div style="text-align:center;font-size:54px;padding:10px">${esc(x.emoji||"📦")}</div><div class="meta"><span>${esc(x.type)} · ${esc(x.category)}</span><span>${esc(x.status||"Active")}</span></div><p style="font-size:13px;line-height:1.6">${esc(x.de
+ $("detailBody").innerHTML=`<div style="text-align:center;font-size:54px;padding:10px">${esc(x.emoji||"📦")}</div><div class="meta"><span>${esc(x.type)} · ${esc(x.category)}</span><span>${esc(x.status||"Active")}</span></div><p style="font-size:13px;line-height:1.6">${esc(x.description)}</p><div class="meta"><span>Location: ${esc(x.location)} ${esc(x.spot||"")}</span><span>Date: ${esc(x.date||"")}</span></div><div class="notice">Ownership checks happen privately. Never share passwords, full ID numbers or sensitive personal details. Arrange collection in a busy public place.</div><div class="row">${x.whatsapp?`<a class="btn primary" target="_blank" rel="noopener" href="${waLink(x.whatsapp,x.name)}">Contact on WhatsApp</a>`:""}${own?`<button class="btn light" onclick="editReport('${esc(x.id)}')">Edit</button>${!returned?`<button class="btn light" onclick="markReturned('${esc(x.id)}')">Mark returned</button>`:""}<button class="btn danger" onclick="removeReport('${esc(x.id)}')">Delete</button>`:""}</div>`;
+ $("detailModal").classList.add("show");
+};
+window.editReport=id=>{
+ const x=reports.find(r=>r.id===id);if(!x)return;
+ editingId=id;closeModal("detailModal");
+ $("reportTitle").textContent="Edit your report";
+ $("rType").value=x.type;
+ $("rCategory").value=x.category;
+ $("rName").value=x.name;
+ $("rWhatsapp").value=x.whatsapp||"";
+ $("rLocation").value=x.location;
+ $("rSpot").value=x.spot||"";
+ $("rDate").value=x.date;
+ $("rDescription").value=x.description;
+ $("reportModal").classList.add("show");
+};
+window.markReturned=async id=>{
+ const item=reports.find(r=>r.id===id);if(!item)return;
+ if(!isOwnReport(item)){toast("Only the person who posted this report can mark it returned.");return}
+ if(item.status==="Returned"){toast("This item is already marked as returned.");return}
+ if(!confirm("Mark this item as returned? It will move to the Returned tab."))return;
+ const ok=await mutateReport(id,{status:"Returned"});
+ if(ok){closeModal("detailModal");toast("Marked as returned. Find it in the Returned tab.")}
+};
+window.removeReport=async id=>{
+ const item=reports.find(x=>x.id===id);
+ if(!item){toast("This listing could not be found. Refresh and try again.");return}
+ if(!isOwnReport(item)){toast("You can only delete listings you posted.");return}
+ if(!confirm("Delete this report? This cannot be undone."))return;
+ try{
+  if(db&&!demoMode()){
+   await deleteDoc(doc(db,"reports",id));
+  }else{
+   reports=reports.filter(x=>x.id!==id);persistDemo();
+  }
+  closeModal("detailModal");render();toast("Report deleted.");
+ }catch(e){
+  console.error("Delete report failed:",e);
+  toast(e.code==="permission-denied"?"Firebase blocked deletion. Check your Firestore rules.":"Could not delete report. Check your connection and try again.");
+ }
+};
+async function mutateReport(id,data){
+ try{
+  if(db&&!demoMode())await updateDoc(doc(db,"reports",id),data);
+  else{
+   let x=reports.find(r=>r.id===id);if(!x)throw Error("Report not found");
+   Object.assign(x,data);persistDemo();
+  }
+  render();return true;
+ }catch(e){
+  console.error(e);
+  toast(e.code==="permission-denied"?"You do not have permission to update this report. Check Firebase rules.":"Could not update this report. Check your connection and try again.");
+  return false;
+ }
+}
+$("reportForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const phone=cleanWhatsApp($("rWhatsapp").value);
+ if(phone.length<12||phone.length>15){toast("Enter a valid WhatsApp number, e.g. 08012345678.");return}
+ const data={
+  type:$("rType").value,
+  category:$("rCategory").value,
+  name:$("rName").value.trim(),
+  whatsapp:phone,
+  location:$("rLocation").value,
+  spot:$("rSpot").value.trim(),
+  date:$("rDate").value,
+  description:$("rDescription").value.trim(),
+  status:"Active"
+ };
+ if(!data.name||!data.description){toast("Please fill in the item name and description.");return}
+ try{
+  if(demoMode()){
+   if(editingId){
+    let x=reports.find(r=>r.id===editingId);Object.assign(x,data);
+   }else{
+    reports.unshift({id:"local"+Date.now(),...data,ownerId:"demo",emoji:"📦"});
+   }
+   persistDemo();
+  }else{
+   if(!user)throw Error("Guest session not ready. Refresh and try again.");
+   if(editingId){
+    await updateDoc(doc(db,"reports",editingId),data);
+   }else{
+    await addDoc(collection(db,"reports"),{
+     ...data,
+     ownerId:user.uid,
+     createdAt:serverTimestamp()
+    });
+   }
+  }
+  closeModal("reportModal");editingId=null;render();toast("Report saved.");
+ }catch(err){
+  console.error(err);
+  toast(err.message||"Could not save report. Check your connection and permissions.");
+ }
+});
+init();
+</script>
+</body>
+</html>
