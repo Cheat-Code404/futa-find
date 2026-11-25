@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#12231f"><meta name="description" content="A student-built lost and found community for FUTA."><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>FUTA Find — Lost & Found</title>
+<style>
+:root{--ink:#17241f;--muted:#68776f;--green:#173d32;--green2:#245b49;--lime:#d7f27a;--paper:#f5f7f2;--line:#e2e9df;--white:#fff;--red:#a94343;--amber:#8c5a1d}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.top{background:var(--green);color:white;padding:14px max(18px,calc((100% - 1160px)/2));display:flex;align-items:center;justify-content:space-between;gap:15px;position:sticky;top:0;z-index:4}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.5px}.logo{height:39px;width:39px;border-radius:13px;background:var(--lime);color:var(--green);display:grid;place-items:center;font-weight:1000;font-size:21px}.brand small{display:block;font-size:10px;color:#c5d7ce;font-weight:550;letter-spacing:.7px}.nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:10px 14px;font-weight:800}.primary{background:var(--lime);color:#1b3027}.ghost{background:#ffffff16;color:white;border:1px solid #ffffff35}.light{background:#edf2e9;color:var(--green)}.danger{background:#fff0ee;color:var(--red)}.small{padding:7px 10px;font-size:12px}.wrap{max-width:1160px;margin:auto;padding:27px 20px 60px}.hero{border-radius:24px;background:linear-gradient(115deg,#173d32,#2c5b49);color:white;padding:30px;display:grid;grid-template-columns:1.5fr .5fr;gap:20px;align-items:center}.eyebrow{color:var(--lime);font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}.hero h1{font-size:clamp(32px,5vw,49px);line-height:1.02;letter-spacing:-1.8px;margin:12px 0}.hero p{max-width:600px;color:#d1e0d8;line-height:1.65;margin:0 0 20px}.hero-art{font-size:100px;text-align:center;filter:drop-shadow(0 10px 14px #0003)}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.stats{display:flex;gap:25px;margin-top:22px;color:#d1e0d8;font-size:12px}.stats strong{display:block;color:white;font-size:20px}.notice{margin:18px 0;padding:13px 16px;border-radius:13px;background:#fff8e9;border:1px solid #f1e2c2;color:#76531f;font-size:12px;line-height:1.55}.demo{background:#eef3e8;border:1px solid #dce8d5;color:#496144}.head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:30px 0 15px}.head h2{margin:0;font-size:23px;letter-spacing:-.5px}.head p{margin:5px 0 0;color:var(--muted);font-size:13px}.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}.filters input,.filters select,.field input,.field select,.field textarea{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:white;color:var(--ink);min-width:0}.filters input{flex:1;min-width:190px}.filters select{min-width:135px}.tabs{display:flex;gap:7px;margin-bottom:15px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:white;color:#65736b;padding:8px 13px;border-radius:99px;font-size:12px;font-weight:800}.tab.active{background:var(--green);color:white;border-color:var(--green)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:white;border:1px solid var(--line);border-radius:16px;overflow:hidden}.photo{height:155px;min-height:155px;background:#eaf0e8;display:grid;place-items:center;font-size:55px;position:relative;overflow:hidden}.photo img{position:absolute;inset:0;display:block;height:100%;width:100%;min-height:0;object-fit:cover}.photo .pill{z-index:1}.pill{position:absolute;top:10px;left:10px;background:white;border-radius:99px;padding:5px 9px;font-size:10px;font-weight:900}.pill.lost{color:#a64c3e}.pill.found{color:#32724a}.pill.returned{color:#54635b}.cardbody{padding:14px}.card h3{font-size:16px;margin:0 0 7px}.desc{font-size:12px;color:#68776f;line-height:1.5;min-height:35px}.meta{display:flex;justify-content:space-between;gap:8px;color:#849087;font-size:11px;margin:12px 0}.foot{border-top:1px solid #edf1eb;padding-top:10px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap}.card-actions{display:flex;gap:5px;justify-content:flex-end;align-items:center;flex-wrap:wrap;max-width:100%}.muted{color:var(--muted)}.empty{grid-column:1/-1;text-align:center;background:white;border:1px dashed #d8e1d6;border-radius:15px;padding:40px;color:var(--muted)}.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;margin:18px 0}.hidden{display:none!important}.modalback{position:fixed;inset:0;background:#0d1a16b8;display:none;align-items:center;justify-content:center;padding:16px;z-index:10}.modalback.show{display:flex}.modal{background:white;border-radius:19px;padding:21px;width:min(560px,100%);max-height:92vh;overflow:auto}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.modalhead h2{margin:0;font-size:21px}.close{border:0;background:#eef2ed;border-radius:9px;width:34px;height:34px;font-size:20px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}.field label{font-size:12px;font-weight:850;color:#526158}.field input,.field select,.field textarea{width:100%}.field textarea{min-height:85px;resize:vertical}.full{grid-column:1/-1}.hint{font-size:10px;color:#89958e;line-height:1.5}.modal .primary{width:100%;padding:13px}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#14261f;color:white;padding:12px 16px;border-radius:12px;display:none;z-index:20;font-size:13px;max-width:90vw}.toast.show{display:block}.status{font-size:10px;font-weight:900;border-radius:99px;padding:5px 8px;background:#edf2e9;color:#4c6253}.status.pending{background:#fff3dc;color:#8a5c1c}.status.rejected{background:#ffeded;color:#a33f3f}.claim{border:1px solid var(--line);border-radius:12px;padding:12px;margin:9px 0}.claim p{font-size:12px;line-height:1.5;color:#5d6b63}.footer{text-align:center;color:#849087;font-size:11px;padding:24px;border-top:1px solid var(--line)}.dangertext{color:var(--red)}.split{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding:24px}.hero-art{display:none}.grid{grid-template-columns:repeat(2,1fr)}.wrap{padding:20px 14px 50px}.top{padding:12px 14px}.nav .ghost{display:none}}
+@media(max-width:520px){.grid{grid-template-columns:1fr 1fr;gap:9px}.photo{height:112px;min-height:112px;font-size:42px}.cardbody{padding:10px}.card h3{font-size:13px}.desc{font-size:10px;min-height:45px}.meta{flex-direction:column;gap:3px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.hero h1{font-size:35px}.hero{border-radius:17px}.stats{gap:15px}.stats strong{font-size:17px}.brand{font-size:14px}.brand small{font-size:8px}.nav .btn{padding:9px 10px;font-size:11px}}
+</style>
+</head>
+<body>
+<header class="top">
+ <div class="brand"><div class="logo">F</div><div>FUTA Find<small>LOST & FOUND · STUDENT COMMUNITY</small></div></div>
+ <nav class="nav"><button class="btn ghost" onclick="showInfo()">How it works</button><button class="btn primary" onclick="openReport()">＋ Report item</button></nav>
+</header>
+<main class="wrap">
+ <section class="hero"><div><div class="eyebrow">A student-built campus initiative</div><h1>Lost something?<br>Let's find it.</h1><p>Report missing belongings, share items you've found, and help get them safely back to their owners around FUTA.</p><div class="row"><button class="btn primary" onclick="openReport('Lost')">I lost something</button><button class="btn ghost" onclick="openReport('Found')">I found something</button></div><div class="stats"><div><strong id="total">0</strong>Active reports</div><div><strong id="lost">0</strong>Lost</div><div><strong id="found">0</strong>Found</div></div></div><div class="hero-art">🔎</div></section>
+ <div id="modeNotice" class="notice demo"><b>Preview mode:</b> No demo listings are included. Reports are saved only on this device until Firebase is connected.</div>
+ <div class="head"><div><h2>Campus reports</h2><p>Search recent items reported around FUTA.</p></div><button class="btn light small" onclick="openReport()">＋ New report</button></div>
+ <div class="filters"><input id="search" placeholder="Search items, details or location…" oninput="render()"><select id="catFilter" onchange="render()"><option value="All">All categories</option><option>Electronics</option><option>Documents</option><option>Accessories</option><option>Clothing</option><option>Keys</option><option>Bags</option><option>Other</option></select><select id="locFilter" onchange="render()"><option value="All">All locations</option><option>SOC</option><option>SUB</option><option>ETF</option><option>Library</option><option>North Gate</option><option>South Gate</option><option>Hostels</option><option>Other</option></select></div>
+ <div class="tabs"><button class="tab active" onclick="setTab('All',this)">All</button><button class="tab" onclick="setTab('Lost',this)">Lost</button><button class="tab" onclick="setTab('Found',this)">Found</button><button class="tab" onclick="setTab('Returned',this)">Returned</button></div>
+ <section id="listings" class="grid"></section>
+ 
+ 
+ <div class="notice"><b>Safety first:</b> Never publish passwords, full matric numbers, home addresses or private identifying details. Don't reveal every identifying feature of an item publicly. Arrange collection in a busy public place on campus.</div>
+</main>
+<footer class="footer">FUTA Find · Independent student project · Not affiliated with or endorsed by the Federal University of Technology, Akure.</footer>
+
+<div class="modalback" id="reportModal" onclick="backdrop(event,'reportModal')">
+ <div class="modal">
+  <div class="modalhead"><h2 id="reportTitle">Report an item</h2><button type="button" class="close" onclick="closeModal('reportModal')" aria-label="Close">×</button></div>
+  <form id="reportForm">
+   <div class="formgrid">
+    <div class="field"><label for="rType">Report type</label><select id="rType" required><option value="Lost">Lost</option><option value="Found">Found</option></select></div>
+    <div class="field"><label for="rCategory">Category</label><select id="rCategory" required><option>Electronics</option><option>Documents</option><option>Accessories</option><option>Clothing</option><option>Keys</option><option>Bags</option><option>Other</option></select></div>
+    <div class="field full"><label for="rName">Item name</label><input id="rName" maxlength="70" placeholder="e.g. Black backpack" required></div>
+    <div class="field full"><label for="rWhatsapp">WhatsApp number</label><input id="rWhatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="08012345678" required><span class="hint">Use a number you are comfortable sharing through the WhatsApp contact button.</span></div>
+    <div class="field"><label for="rLocation">Campus area</label><select id="rLocation" required><option value="SOC">SOC</option><option value="SUB">SUB</option><option value="ETF">ETF</option><option value="Library">Library</option><option value="North Gate">North Gate</option><option value="South Gate">South Gate</option><option value="Hostels">Hostels</option><option value="Other">Other</option></select></div>
+    <div class="field"><label for="rSpot">Specific location (optional)</label><input id="rSpot" maxlength="100" placeholder="e.g. Lecture room entrance"></div>
+    <div class="field"><label for="rDate">Date</label><input id="rDate" type="date" required></div>
+    <div class="field"><label for="rPhoto">Photo (optional)</label><input id="rPhoto" type="file" accept="image/jpeg,image/png,image/webp"><span class="hint">JPG, PNG or WebP; maximum 2 MB.</span></div>
+    <div class="field full"><label for="rDescription">Description</label><textarea id="rDescription" maxlength="700" placeholder="Describe the item and where it was lost or found. Keep one identifying detail private." required></textarea></div>
+   </div>
+   <button class="btn primary" type="submit">Publish report</button>
+  </form>
+ </div>
+</div>
+<div class="modalback" id="detailModal" onclick="backdrop(event,'detailModal')">
+ <div class="modal"><div class="modalhead"><h2 id="detailTitle">Item details</h2><button type="button" class="close" onclick="closeModal('detailModal')" aria-label="Close">×</button></div><div id="detailBody"></div></div>
+</div>
+<div class="modalback" id="infoModal" onclick="backdrop(event,'infoModal')"><div class="modal"><div class="modalhead"><h2>How FUTA Find works</h2><button class="close" onclick="closeModal('infoModal')">×</button></div><p class="muted" style="line-height:1.7;font-size:13px">1. Browse Lost and Found listings without signing in.<br><br>2. Post an item with its details and a WhatsApp number.<br><br>3. Anyone interested can tap Contact on WhatsApp to message the poster directly.<br><br>4. When an item is back with its owner, mark the listing Returned.<br><br>5. Meet in a busy public place on campus and avoid sharing sensitive personal information.</p><div class="notice">This prototype is not connected to a live backend yet. Firebase configuration, security rules and admin setup are included in the project download.</div></div></div>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+// Firebase is loaded only when a real project configuration is supplied.
+// This keeps preview mode fully functional even if Firebase/CDN access is unavailable.
+let initializeApp, getAuth, onAuthStateChanged, signInAnonymously;
+let getFirestore, collection, doc, addDoc, getDocs, getDoc, updateDoc, deleteDoc;
+let query, orderBy, where, onSnapshot, serverTimestamp, setDoc;
+let getStorage, ref, uploadBytes, getDownloadURL;
+
+const firebaseConfig = {
+  apiKey: "PASTE_FIREBASE_API_KEY",
+  authDomain: "PASTE_PROJECT.firebaseapp.com",
+  projectId: "PASTE_PROJECT_ID",
+  storageBucket: "PASTE_PROJECT.appspot.com",
+  messagingSenderId: "PASTE_SENDER_ID",
+  appId: "PASTE_APP_ID"
+};
+const configured = !Object.values(firebaseConfig).some(v => String(v).includes("PASTE_"));
+let app,auth,db,storage,user=null,reports=[],claims=[],activeTab="All",editingId=null;
+const seed=[];
+const $=id=>document.getElementById(id);
+function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),3000)}
+window.closeModal=id=>$(id).classList.remove("show");
+window.backdrop=(e,id)=>{if(e.target.id===id)window.closeModal(id)};
+window.showInfo=()=>$("infoModal").classList.add("show");
+function demoMode(){return !configured}
+function updateMode(){ $("modeNotice").innerHTML=demoMode()?"<b>Preview mode:</b> No demo listings are included. Reports are stored only on this device until Firebase is connected.":"<b>Connected mode:</b> Shared campus listings are live. No student accounts required."; }
+function loadDemo(){
+  try{
+    const saved=JSON.parse(localStorage.getItem("futaFindReports"));
+    reports=Array.isArray(saved)?saved.filter(x=>x&& !/^demo/.test(String(x.id||""))):[];
+    localStorage.setItem("futaFindReports",JSON.stringify(reports));
+  }catch{
+    reports=[];
+    try{localStorage.setItem("futaFindReports","[]")}catch{}
+  }
+}
+function persistDemo(){try{localStorage.setItem("futaFindReports",JSON.stringify(reports))}catch{toast("Browser storage is full. Remove large photos or use smaller images.")}}
+async function init(){
+ if(!configured){loadDemo();user={uid:"demo"};updateMode();render();return}
+ try{
+  const [fbApp,fbAuth,fbStore,fbStorage]=await Promise.all([
+   import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"),
+   import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"),
+   import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"),
+   import("https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js")
+  ]);
+  ({initializeApp}=fbApp);
+  ({getAuth,onAuthStateChanged,signInAnonymously}=fbAuth);
+  ({getFirestore,collection,doc,addDoc,getDocs,getDoc,updateDoc,deleteDoc,query,orderBy,where,onSnapshot,serverTimestamp,setDoc}=fbStore);
+  ({getStorage,ref,uploadBytes,getDownloadURL}=fbStorage);
+  app=initializeApp(firebaseConfig);auth=getAuth(app);db=getFirestore(app);storage=getStorage(app);updateMode();
+  onAuthStateChanged(auth,async u=>{if(!u){try{await signInAnonymously(auth)}catch(e){console.error(e);toast("Could not start a guest session. Check Firebase Anonymous sign-in.")}return}
+   user=u;await subscribeReports();render();
+  });
+ }catch(e){console.error("Firebase unavailable; switching to local preview mode:",e);toast("Firebase could not load. Using this-device preview instead.");loadDemo();user={uid:"demo"};updateMode();render()}
+}
+async function subscribeReports(){
+ if(!db){render();return}
+ try{onSnapshot(query(collection(db,"reports"),orderBy("createdAt","desc")),snap=>{reports=snap.docs.map(d=>({id:d.id,...d.data()}));render()},err=>{console.error(err);toast("Could not load reports. Check Firestore rules.")})}catch(e){console.error(e)}
+}
+window.setTab=(v,el)=>{activeTab=v;document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));el.classList.add("active");render()};
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function cleanWhatsApp(value){let n=String(value||"").replace(/\D/g,"");if(n.startsWith("0"))n="234"+n.slice(1);if(n.startsWith("234"))return n;if(n.length===10)return "234"+n;return n}
+function waLink(number,item){const n=cleanWhatsApp(number);return "https://wa.me/"+n+"?text="+encodeURIComponent("Hi, I saw your "+item+" listing on FUTA Find. Is it still available?")}
+window.render=render;
+function render(){
+ const q=$("search").value.toLowerCase(),cat=$("catFilter").value,loc=$("locFilter").value;
+ const active=reports.filter(x=>(activeTab==="All"||(activeTab==="Returned"?x.status==="Returned":x.type===activeTab&&x.status!=="Returned"))&&(cat==="All"||x.category===cat)&&(loc==="All"||x.location===loc)&&[x.name,x.description,x.location,x.spot,x.category].join(" ").toLowerCase().includes(q));
+ const open=reports.filter(x=>x.status!=="Returned");$("total").textContent=open.length;$("lost").textContent=open.filter(x=>x.type==="Lost").length;$("found").textContent=open.filter(x=>x.type==="Found").length;
+ $("listings").innerHTML=active.length?active.map(x=>{const own=isOwnReport(x);return `<article class="card"><div class="photo">${x.photo?`<img src="${esc(x.photo)}" alt="${esc(x.name)}">`:esc(x.emoji||"📦")}<span class="pill ${x.status==="Returned"?"returned":x.type.toLowerCase()}">${esc(x.status==="Returned"?"RETURNED":x.type.toUpperCase())}</span></div><div class="cardbody"><h3>${esc(x.name)}</h3><div class="desc">${esc(x.description)}</div><div class="meta"><span>⌖ ${esc(x.location)}${x.spot?", "+esc(x.spot):""}</span><span>${esc(x.date||"")}</span></div><div class="foot"><span class="muted" style="font-size:11px;font-weight:800">${esc(x.category)}</span><div class="card-actions">${x.whatsapp?`<a class="btn primary small" target="_blank" rel="noopener" href="${waLink(x.whatsapp,x.name)}">WhatsApp</a>`:""}<button class="btn light small" onclick="showDetail('${esc(x.id)}')">Details</button>${own&&x.status!=="Returned"?`<button class="btn light small" onclick="markReturned('${esc(x.id)}')">Returned ✓</button>`:""}${own?`<button class="btn danger small" onclick="removeReport('${esc(x.id)}')">Delete</button>`:""}</div></div></div></article>`}).join(""):`<div class="empty"><b>No matching reports</b><p>Try another search or submit the first report.</p></div>`;
+}
+function isOwnReport(x){return demoMode()?String(x.id||"").startsWith("local"):!!(user&&x.ownerId===user.uid)}
+function requireApproved(){return true}
+window.openReport=kind=>{if(!requireApproved())return;editingId=null;$("reportForm").reset();$("reportTitle").textContent="Report an item";$("rType").value=kind||"Lost";$("rDate").value=new Date().toISOString().slice(0,10);$("reportModal").classList.add("show")};
+window.showDetail=id=>{const x=reports.find(r=>r.id===id);if(!x)return;$("detailTitle").textContent=x.name;const own=isOwnReport(x);const returned=x.status==="Returned";$("detailBody").innerHTML=`<div style="text-align:center;font-size:54px;padding:10px">${x.photo?`<img src="${esc(x.photo)}" style="max-width:100%;max-height:190px;border-radius:12px;object-fit:contain">`:esc(x.emoji||"📦")}</div><div class="meta"><span>${esc(x.type)} · ${esc(x.category)}</span><span>${esc(x.status||"Active")}</span></div><p style="font-size:13px;line-height:1.6">${esc(x.description)}</p><div class="meta"><span>Location: ${esc(x.location)} ${esc(x.spot||"")}</span><span>Date: ${esc(x.date||"")}</span></div><div class="notice">Ownership checks happen privately. Never share passwords, full ID numbers or sensitive personal details. Arrange collection in a busy public place.</div><div class="row">${x.whatsapp?`<a class="btn primary" target="_blank" rel="noopener" href="${waLink(x.whatsapp,x.name)}">Contact on WhatsApp</a>`:""}${own?`<button class="btn light" onclick="editReport('${esc(x.id)}')">Edit</button>${!returned?`<button class="btn light" onclick="markReturned('${esc(x.id)}')">Mark returned</button>`:""}<button class="btn danger" onclick="removeReport('${esc(x.id)}')">Delete</button>`:""}</div>`;$("detailModal").classList.add("show")};
+window.editReport=id=>{const x=reports.find(r=>r.id===id);if(!x)return;editingId=id;closeModal("detailModal");$("reportTitle").textContent="Edit your report";$("rType").value=x.type;$("rCategory").value=x.category;$("rName").value=x.name;$("rWhatsapp").value=x.whatsapp||"";$("rLocation").value=x.location;$("rSpot").value=x.spot||"";$("rDate").value=x.date;$("rDescription").value=x.description;$("reportModal").classList.add("show")};
+window.markReturned=async id=>{const item=reports.find(r=>r.id===id);if(!item)return;if(!isOwnReport(item)){toast("Only the person who posted this report can mark it returned.");return}if(item.status==="Returned"){toast("This item is already marked as returned.");return}if(!confirm("Mark this item as returned? It will move to the Returned tab."))return;const ok=await mutateReport(id,{status:"Returned"});if(ok){closeModal("detailModal");toast("Marked as returned. Find it in the Returned tab.")}};
+window.removeReport=async id=>{const item=reports.find(x=>x.id===id);if(!item){toast("This listing could not be found. Refresh and try again.");return}if(!isOwnReport(item)){toast("You can only delete listings you posted from this browser.");return}if(!confirm("Delete this report? This cannot be undone."))return;try{if(db&&!demoMode()){await deleteDoc(doc(db,"reports",id));reports=reports.filter(x=>x.id!==id)}else{reports=reports.filter(x=>x.id!==id);persistDemo()}closeModal("detailModal");render();toast("Report deleted.")}catch(e){console.error("Delete report failed:",e);toast(e.code==="permission-denied"?"Firebase blocked deletion. Deploy the updated firestore.rules and try again.":"Could not delete report. Check your connection and try again.")}};
+async function mutateReport(id,data){try{if(db&&!demoMode())await updateDoc(doc(db,"reports",id),data);else{let x=reports.find(r=>r.id===id);if(!x)throw Error("Report not found");Object.assign(x,data);persistDemo()}render();return true}catch(e){console.error(e);toast(e.code==="permission-denied"?"You do not have permission to update this report. Check Firebase rules.":"Could not update this report. Check your connection and try again.");return false}}
+$("reportForm").addEventListener("submit",async e=>{e.preventDefault();const phone=cleanWhatsApp($("rWhatsapp").value);if(phone.length<12||phone.length>15){toast("Enter a valid WhatsApp number, e.g. 08012345678.");return}const file=$("rPhoto").files[0];if(file&&(!["image/jpeg","image/png","image/webp"].includes(file.type)||file.size>2*1024*1024)){toast("Use a JPG, PNG or WebP image under 2 MB.");return}
+ const data={type:$("rType").value,category:$("rCategory").value,name:$("rName").value.trim(),whatsapp:phone,location:$("rLocation").value,spot:$("rSpot").value.trim(),date:$("rDate").value,description:$("rDescription").value.trim(),status:"Active"};
+ try{
+  if(demoMode()){if(file){data.photo=await fileToData(file)}if(editingId){let x=reports.find(r=>r.id===editingId);Object.assign(x,data)}else reports.unshift({id:"local"+Date.now(),...data,ownerId:"demo",emoji:"📦"});persistDemo()}
+  else{if(!user)throw Error("Guest session not ready. Refresh and try again.");if(file){const path=ref(storage,`reportPhotos/${user.uid}/${Date.now()}_${file.name.replace(/[^a-z0-9._-]/gi,"_")}`);await uploadBytes(path,file);data.photo=await getDownloadURL(path)}if(editingId)await updateDoc(doc(db,"reports",editingId),data);else await addDoc(collection(db,"reports"),{...data,ownerId:user.uid,createdAt:serverTimestamp()})}
+  closeModal("reportModal");editingId=null;render();toast("Report saved.");}catch(err){console.error(err);toast(err.message||"Could not save report. Check your connection and permissions.")}
+});
+function fileToData(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f)})}
+init();
+</script>
+</body></html>
