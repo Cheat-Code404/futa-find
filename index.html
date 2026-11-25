@@ -101,7 +101,7 @@ async function init(){
   onAuthStateChanged(auth,async u=>{
    if(!u){
     try{await signInAnonymously(auth)}
-    catch(e){console.error(e);toast("Could not start a guest session. Check Firebase Anonymous sign-in.")}
+    catch(e){console.error(e);toast("Firebase error: "+e.code+" — "+e.message)}
     return;
    }
    user=u;await subscribeReports();render();
